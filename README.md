@@ -8,7 +8,7 @@ The final EEMS model will be available to view on both EEMS Online and Data Basi
 
 For more information about this repository contact [Zac Canter](https://consbio.org/people/staff/zac-canter).
 
-*Note: this repository does not contain actually geodatabases or shapefiles*
+*Note: to preserve space, this repository does not contain actually geodatabases or shapefiles*
 
 ## About The Project
 
