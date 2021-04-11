@@ -1,0 +1,76 @@
+
+
+# Read Commands
+Join_ID = EEMSRead(
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
+    InFieldName = "Join_ID",
+    DataType = "Integer"
+)
+
+Pr_Lg_Fr = EEMSRead(
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
+    InFieldName = "Pr_Lg_Fr",
+    DataType = "Float"
+)
+
+Pr_Fire_Ig = EEMSRead(
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
+    InFieldName = "Pr_Fire_Ig",
+    DataType = "Float"
+)
+
+WUI_Interm = EEMSRead(
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
+    InFieldName = "WUI_Interm",
+    DataType = "Integer"
+)
+
+WUI_Interf = EEMSRead(
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
+    InFieldName = "WUI_Interf",
+    DataType = "Integer"
+)
+
+LU_Cat = EEMSRead(
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
+    InFieldName = "LU_Cat",
+    DataType = "Float"
+)
+
+# Normalizations
+
+Nm_Lg_Fire = Normalize(
+    InFieldName = Pr_Lg_Fr, 
+    StartVal = 0, 
+    EndVal = 1
+)
+
+Nm_Fire_Ig = Normalize(
+    InFieldName = Pr_Fire_Ig, 
+    StartVal = 0, 
+    EndVal = 1
+)
+
+# Operations
+
+Hi_Fr_Rsk = WeightedSum(
+    InFieldNames = [Nm_Lg_Fire, Nm_Fire_Ig], 
+    Weights = [0.5, 0.5]
+)
+
+WUI_Rsk = Maximum(
+    InFieldNames = [WUI_Interm, WUI_Interf] 
+)
+
+Hi_Pri = WeightedSum(
+    InFieldNames = [Hi_Fr_Rsk, WUI_Rsk, LU_Cat], 
+    Weights = [0.333, 0.333, 0.334]
+)
+
+# Output
+
+Out = EEMSWrite(
+  OutFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/EEMS_Output.csv,
+  OutFieldNames = [Join_ID, Hi_Pri, Hi_Fr_Rsk, WUI_Rsk, Nm_Lg_Fire, Nm_Fire_Ig, WUI_Interm, WUI_Interf, Pr_Lg_Fr, Pr_Fire_Ig, LU_Cat]
+)
+    
