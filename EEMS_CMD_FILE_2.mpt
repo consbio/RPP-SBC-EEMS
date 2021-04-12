@@ -3,8 +3,8 @@
 # Read Commands
 Join_ID = EEMSRead(
     InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
-    InFieldName = "Join_ID",
-    DataType = "Integer",
+    InFieldName = Join_ID,
+    DataType = Integer,
     Metadata = [
         DisplayName: Join&nbsp;ID,
         ColorMap: RdYlBu_r
@@ -13,8 +13,8 @@ Join_ID = EEMSRead(
 
 Pr_Lg_Fr = EEMSRead(
     InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
-    InFieldName = "Pr_Lg_Fr",
-    DataType = "Float",
+    InFieldName = Pr_Lg_Fr,
+    DataType = Float,
     Metadata = [
         DisplayName: Probability&nbsp;Of&nbsp;Large&nbsp;Fire,
         ColorMap: RdYlBu_r
@@ -23,8 +23,8 @@ Pr_Lg_Fr = EEMSRead(
 
 Pr_Fire_Ig = EEMSRead(
     InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
-    InFieldName = "Pr_Fire_Ig",
-    DataType = "Float",
+    InFieldName = Pr_Fire_Ig,
+    DataType = Float,
     Metadata = [
         DisplayName: Probability&nbsp;Of&nbsp;Fire&nbsp;Ignition,
         ColorMap: RdYlBu_r
@@ -33,8 +33,8 @@ Pr_Fire_Ig = EEMSRead(
 
 WUI_Interm = EEMSRead(
     InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
-    InFieldName = "WUI_Interm",
-    DataType = "Integer",
+    InFieldName = WUI_Interm,
+    DataType = Integer,
     Metadata = [
         DisplayName: WUIy&nbsp;Intermix,
         ColorMap: RdYlBu_r
@@ -43,8 +43,8 @@ WUI_Interm = EEMSRead(
 
 WUI_Interf = EEMSRead(
     InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
-    InFieldName = "WUI_Interf",
-    DataType = "Integer",
+    InFieldName = WUI_Interf,
+    DataType = Integer,
     Metadata = [
         DisplayName: WUI&nbsp;Interface,
         ColorMap: RdYlBu_r
@@ -53,8 +53,8 @@ WUI_Interf = EEMSRead(
 
 LU_Cat = EEMSRead(
     InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
-    InFieldName = "LU_Cat",
-    DataType = "Float",
+    InFieldName = LU_Cat,
+    DataType = Float,
     Metadata = [
         DisplayName: Landuse&nbsp;Category,
         ColorMap: RdYlBu_r
@@ -110,11 +110,3 @@ Hi_Pri = WeightedSum(
         ColorMap: RdYlBu_r
     ]
 )
-
-# Output
-
-Out = EEMSWrite(
-  OutFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/EEMS_Output.csv,
-  OutFieldNames = [Join_ID, Hi_Pri, Hi_Fr_Rsk, WUI_Rsk, Nm_Lg_Fire, Nm_Fire_Ig, WUI_Interm, WUI_Interf, Pr_Lg_Fr, Pr_Fire_Ig, LU_Cat]
-)
-    
