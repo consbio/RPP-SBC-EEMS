@@ -1,22 +1,12 @@
 
 
-# Read Commands
-Join_ID = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
-    InFieldName = Join_ID,
-    DataType = Integer,
-    Metadata = [
-        DisplayName: Join&nbsp;ID,
-        ColorMap: RdYlBu_r
-    ]
-)
-
 Pr_Lg_Fr = EEMSRead(
     InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
     InFieldName = Pr_Lg_Fr,
     DataType = Float,
     Metadata = [
         DisplayName: Probability&nbsp;Of&nbsp;Large&nbsp;Fire,
+        Description: Relative&nbsp;Probability&nbsp;Of&nbsp;Large&nbsp;Fire,
         ColorMap: RdYlBu_r
     ]
 )
@@ -36,7 +26,7 @@ WUI_Interm = EEMSRead(
     InFieldName = WUI_Interm,
     DataType = Integer,
     Metadata = [
-        DisplayName: WUIy&nbsp;Intermix,
+        DisplayName: WUI&nbsp;Intermix,
         ColorMap: RdYlBu_r
     ]
 )
@@ -94,6 +84,16 @@ Hi_Fr_Rsk = WeightedSum(
     ]
 )
 
+Nm_Fr_Rsk = Normalize(
+    InFieldName = Hi_Fr_Rsk, 
+    StartVal = 0, 
+    EndVal = 1,
+    Metadata = [
+        DisplayName: Normalized&nbsp;High&nbsp;Fire&nbsp;Risk,
+        ColorMap: RdYlBu_r
+    ]
+)
+
 WUI_Rsk = Maximum(
     InFieldNames = [WUI_Interm, WUI_Interf],
     Metadata = [
@@ -103,10 +103,20 @@ WUI_Rsk = Maximum(
 )
 
 Hi_Pri = WeightedSum(
-    InFieldNames = [Hi_Fr_Rsk, WUI_Rsk, LU_Cat], 
+    InFieldNames = [Nm_Fr_Rsk, WUI_Rsk, LU_Cat], 
     Weights = [0.333, 0.333, 0.334],
     Metadata = [
         DisplayName: High&nbsp;Priority&nbsp;Area,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+Nm_Hi_Pri = Normalize(
+    InFieldName = Hi_Pri, 
+    StartVal = 0, 
+    EndVal = 1,
+    Metadata = [
+        DisplayName: Normalized&nbsp;High&nbsp;Priority&nbsp;Area,
         ColorMap: RdYlBu_r
     ]
 )

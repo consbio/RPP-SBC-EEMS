@@ -7,6 +7,7 @@ Join_ID = EEMSRead(
     DataType = "Integer",
     Metadata = [
         DisplayName: Join&nbsp;ID,
+        Description: Join&nbsp;ID,
         ColorMap: RdYlBu_r
     ]
 )
@@ -17,6 +18,7 @@ Pr_Lg_Fr = EEMSRead(
     DataType = "Float",
     Metadata = [
         DisplayName: Probability&nbsp;Of&nbsp;Large&nbsp;Fire,
+        Description: Relative&nbsp;Probability&nbsp;Of&nbsp;Large&nbsp;Fire,
         ColorMap: RdYlBu_r
     ]
 )
@@ -36,7 +38,7 @@ WUI_Interm = EEMSRead(
     InFieldName = "WUI_Interm",
     DataType = "Integer",
     Metadata = [
-        DisplayName: WUIy&nbsp;Intermix,
+        DisplayName: WUI&nbsp;Intermix,
         ColorMap: RdYlBu_r
     ]
 )
@@ -94,6 +96,16 @@ Hi_Fr_Rsk = WeightedSum(
     ]
 )
 
+Nm_Fr_Rsk = Normalize(
+    InFieldName = Hi_Fr_Rsk, 
+    StartVal = 0, 
+    EndVal = 1,
+    Metadata = [
+        DisplayName: Normalized&nbsp;High&nbsp;Fire&nbsp;Risk,
+        ColorMap: RdYlBu_r
+    ]
+)
+
 WUI_Rsk = Maximum(
     InFieldNames = [WUI_Interm, WUI_Interf],
     Metadata = [
@@ -103,7 +115,7 @@ WUI_Rsk = Maximum(
 )
 
 Hi_Pri = WeightedSum(
-    InFieldNames = [Hi_Fr_Rsk, WUI_Rsk, LU_Cat], 
+    InFieldNames = [Nm_Fr_Rsk, WUI_Rsk, LU_Cat], 
     Weights = [0.333, 0.333, 0.334],
     Metadata = [
         DisplayName: High&nbsp;Priority&nbsp;Area,
@@ -111,10 +123,14 @@ Hi_Pri = WeightedSum(
     ]
 )
 
-# Output
-
-Out = EEMSWrite(
-  OutFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/EEMS_Output.csv,
-  OutFieldNames = [Join_ID, Hi_Pri, Hi_Fr_Rsk, WUI_Rsk, Nm_Lg_Fire, Nm_Fire_Ig, WUI_Interm, WUI_Interf, Pr_Lg_Fr, Pr_Fire_Ig, LU_Cat]
+Nm_Hi_Pri = Normalize(
+    InFieldName = Hi_Pri, 
+    StartVal = 0, 
+    EndVal = 1,
+    Metadata = [
+        DisplayName: Normalized&nbsp;High&nbsp;Priority&nbsp;Area,
+        ColorMap: RdYlBu_r
+    ]
 )
-    
+
+ 
