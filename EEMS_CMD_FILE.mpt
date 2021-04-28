@@ -2,7 +2,7 @@
 
 # Read Commands
 Join_ID = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_9.csv,
     InFieldName = "Join_ID",
     DataType = "Integer",
     Metadata = [
@@ -13,7 +13,7 @@ Join_ID = EEMSRead(
 )
 
 Mj_LU_Cat = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_9.csv,
     InFieldName = "Mj_LU_Cat",
     DataType = "Integer",
     Metadata = [
@@ -24,28 +24,28 @@ Mj_LU_Cat = EEMSRead(
 )
 
 Pr_Lg_Fr = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_9.csv,
     InFieldName = "Pr_Lg_Fr",
     DataType = "Float",
     Metadata = [
         DisplayName: Probability&nbsp;Of&nbsp;Large&nbsp;Fire,
-        Description: Relative&nbsp;Probability&nbsp;Of&nbsp;Large&nbsp;Fire,
+        Description: Relative&nbsp;Probability&nbsp;Of&nbsp;Large&nbsp;Fire&nbsp;Raw,
         ColorMap: RdYlBu_r
     ]
 )
 
 Pr_Fire_Ig = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_9.csv,
     InFieldName = "Pr_Fire_Ig",
     DataType = "Float",
     Metadata = [
-        DisplayName: Probability&nbsp;Of&nbsp;Fire&nbsp;Ignition,
+        DisplayName: Probability&nbsp;Of&nbsp;Fire&nbsp;Ignition&nbsp;Raw,
         ColorMap: RdYlBu_r
     ]
 )
 
 WUI_Interm = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_9.csv,
     InFieldName = "WUI_Interm",
     DataType = "Integer",
     Metadata = [
@@ -55,11 +55,61 @@ WUI_Interm = EEMSRead(
 )
 
 WUI_Interf = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_9.csv,
     InFieldName = "WUI_Interf",
     DataType = "Integer",
     Metadata = [
         DisplayName: WUI&nbsp;Interface,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+sa_emb_rsk = EEMSRead(
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_9.csv,
+    InFieldName = "sa_emb_rsk",
+    DataType = "Float",
+    Metadata = [
+        DisplayName: Santa&nbsp;Ana&nbsp;Ember&nbsp;Risk&nbsp;Raw,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+sd_emb_rsk = EEMSRead(
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_9.csv,
+    InFieldName = "sd_emb_rsk",
+    DataType = "Float",
+    Metadata = [
+        DisplayName: Sundowner&nbsp;Ember&nbsp;Risk&nbsp;Raw,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+bl_dns_0p5 = EEMSRead(
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_9.csv,
+    InFieldName = "bl_dns_0p5",
+    DataType = "Integer",
+    Metadata = [
+        DisplayName: Half&nbsp;Mile&nbsp;Building&nbsp;Density&nbsp;Raw,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+bl_dns_3mi = EEMSRead(
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_9.csv,
+    InFieldName = "bl_dns_3mi",
+    DataType = "Integer",
+    Metadata = [
+        DisplayName: Three&nbsp;Mile&nbsp;Building&nbsp;Density&nbsp;Raw,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+bl_dns_1kf = EEMSRead(
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_9.csv,
+    InFieldName = "bl_dns_1kf",
+    DataType = "Integer",
+    Metadata = [
+        DisplayName: Thousand&nbsp;Feet&nbsp;Building&nbsp;Density&nbsp;Raw,
         ColorMap: RdYlBu_r
     ]
 )
@@ -94,7 +144,7 @@ Nm_Lg_Fire = Normalize(
     StartVal = 0, 
     EndVal = 1,
     Metadata = [
-        DisplayName: Normalized&nbsp;Probability&nbsp;Of&nbsp;Large&nbsp;Fire,
+        DisplayName: Probability&nbsp;Of&nbsp;Large&nbsp;Fire,
         ColorMap: RdYlBu_r
     ]
 )
@@ -104,28 +154,97 @@ Nm_Fire_Ig = Normalize(
     StartVal = 0, 
     EndVal = 1,
     Metadata = [
-        DisplayName: Normalized&nbsp;Probability&nbsp;Of&nbsp;Fire&nbsp;Ignition,
+        DisplayName: Probability&nbsp;Of&nbsp;Fire&nbsp;Ignition,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+nm_dns_1kf = Normalize(
+    InFieldName = bl_dns_1kf, 
+    StartVal = 0, 
+    EndVal = 1,
+    Metadata = [
+        DisplayName: Thousand&nbsp;Feet&nbsp;Building&nbsp;Density,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+nm_dns_0p5 = Normalize(
+    InFieldName = bl_dns_0p5, 
+    StartVal = 0, 
+    EndVal = 1,
+    Metadata = [
+        DisplayName: Half&nbsp;Mile&nbsp;Building&nbsp;Density,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+nm_dns_3mi = Normalize(
+    InFieldName = bl_dns_3mi, 
+    StartVal = 0, 
+    EndVal = 1,
+    Metadata = [
+        DisplayName: Three&nbsp;Mile&nbsp;Building&nbsp;Density,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+nm_sa_rsk = Normalize(
+    InFieldName = sa_emb_rsk, 
+    StartVal = 0, 
+    EndVal = 1,
+    Metadata = [
+        DisplayName: Santa&nbsp;Ana&nbsp;Ember&nbsp;Risk,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+nm_sd_rsk = Normalize(
+    InFieldName = sd_emb_rsk, 
+    StartVal = 0, 
+    EndVal = 1,
+    Metadata = [
+        DisplayName: Sundowner&nbsp;Ember&nbsp;Risk,
         ColorMap: RdYlBu_r
     ]
 )
 
 # Operations
 
-Hi_Fr_Rsk = WeightedSum(
-    InFieldNames = [Nm_Lg_Fire, Nm_Fire_Ig], 
+embr_rsk = WeightedSum(
+    InFieldNames = [nm_sd_rsk, nm_sa_rsk], 
     Weights = [0.5, 0.5],
     Metadata = [
-        DisplayName: High&nbsp;Fire&nbsp;Risk,
+        DisplayName: Combined&nbsp;Ember&nbsp;Risk&nbsp;Raw,
         ColorMap: RdYlBu_r
     ]
 )
 
-Nm_Fr_Rsk = Normalize(
-    InFieldName = Hi_Fr_Rsk, 
+nm_emb_rsk = Normalize(
+    InFieldName = embr_rsk, 
     StartVal = 0, 
     EndVal = 1,
     Metadata = [
-        DisplayName: Normalized&nbsp;High&nbsp;Fire&nbsp;Risk,
+        DisplayName: Combined&nbsp;Ember&nbsp;Risk,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+dens_dev = WeightedSum(
+    InFieldNames = [nm_dns_1kf, nm_dns_0p5, nm_dns_3mi], 
+    Weights = [0.33, 0.33, 0.34],
+    Metadata = [
+        DisplayName: Proximity&nbsp;To&nbsp;Dense&nbsp;Development&nbsp;Raw,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+nm_den_dev = Normalize(
+    InFieldName = dens_dev, 
+    StartVal = 0, 
+    EndVal = 1,
+    Metadata = [
+        DisplayName:  Proximity&nbsp;To&nbsp;Dense&nbsp;Development,
         ColorMap: RdYlBu_r
     ]
 )
@@ -139,10 +258,10 @@ WUI_Rsk = Maximum(
 )
 
 Hi_Pri = WeightedSum(
-    InFieldNames = [Nm_Fr_Rsk, WUI_Rsk, LU_Cat_Cvt], 
-    Weights = [0.333, 0.333, 0.334],
+    InFieldNames = [Nm_Lg_Fire, Nm_Fire_Ig, nm_emb_rsk, nm_den_dev, WUI_Rsk, LU_Cat_Cvt], 
+    Weights = [0.16, 0.2, 0.16, 0.16, 0.16, 0.16],
     Metadata = [
-        DisplayName: High&nbsp;Priority&nbsp;Area,
+        DisplayName: High&nbsp;Priority&nbsp;Area&nbsp;Raw,
         ColorMap: RdYlBu_r
     ]
 )
@@ -152,15 +271,8 @@ Nm_Hi_Pri = Normalize(
     StartVal = 0, 
     EndVal = 1,
     Metadata = [
-        DisplayName: Normalized&nbsp;High&nbsp;Priority&nbsp;Area,
+        DisplayName: High&nbsp;Priority&nbsp;Area,
         ColorMap: RdYlBu_r
     ]
 )
 
-# Output
-
-Out = EEMSWrite(
-  OutFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/EEMS_Output.csv,
-  OutFieldNames = [Join_ID, Nm_Hi_Pri, Hi_Pri, Nm_Fr_Rsk, Hi_Fr_Rsk, WUI_Rsk, Nm_Lg_Fire, Nm_Fire_Ig, WUI_Interm, WUI_Interf, Pr_Lg_Fr, Pr_Fire_Ig, LU_Cat_Cvt, LU_Cat_Fz, Mj_LU_Cat]
-)
-    
