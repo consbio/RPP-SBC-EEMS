@@ -4,6 +4,8 @@
 
 This repository is meant to document the various methological approaches and geoprocessing workflows taken in building the complete EEMS model. The best way to view this is to look at each Jupyter Notebook in numerical order.
 
+There are two branches! One for the "core" model which features all the classic elements for EEMS modeling related to wildfire, and one "experimental" branch which includes more advanced and speculative analyses.
+
 The final EEMS model will be available to view on both EEMS Online and Data Basin. To view data layers used in these models go to the [Data Basin RPP group](https://databasin.org/groups/a7a78b77e731438ab564e033d5d221f4/). Temporary EEMS Online testing models are located [here](), while the testing model is on Data Basin [here]().
 
 For more information about this repository contact [Zac Canter](https://consbio.org/people/staff/zac-canter).
