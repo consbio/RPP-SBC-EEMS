@@ -1,13 +1,13 @@
 
 
-
+# Read Commands
 Mj_LU_Cat = EEMSRead(
     InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
     InFieldName = Mj_LU_Cat,
     DataType = Integer,
     Metadata = [
-        DisplayName: Majority&nbsp;LandUse&nbsp;Category,
-        Description: Majority&nbsp;LandUse&nbsp;Category,
+        DisplayName: Majority&nbsp;LandUse&nbsp;Category&nbsp;Raw,
+        Description: Majority&nbsp;LandUse&nbsp;Category&nbsp;Raw,
         ColorMap: RdYlBu_r
     ]
 )
@@ -17,18 +17,19 @@ Pr_Lg_Fr = EEMSRead(
     InFieldName = Pr_Lg_Fr,
     DataType = Float,
     Metadata = [
-        DisplayName: Probability&nbsp;Of&nbsp;Large&nbsp;Fire,
-        Description: Relative&nbsp;Probability&nbsp;Of&nbsp;Large&nbsp;Fire,
+        DisplayName: Probability&nbsp;Of&nbsp;Large&nbsp;Fire&nbsp;Raw,
+        Description: Relative&nbsp;Probability&nbsp;Of&nbsp;Large&nbsp;Fire&nbsp;Raw,
         ColorMap: RdYlBu_r
     ]
 )
 
-Pr_Fire_Ig = EEMSRead(
+Pc_Cg_LgFi = EEMSRead(
     InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
-    InFieldName = Pr_Fire_Ig,
+    InFieldName = Pc_Cg_LgFi,
     DataType = Float,
     Metadata = [
-        DisplayName: Probability&nbsp;Of&nbsp;Fire&nbsp;Ignition,
+        DisplayName: Average&nbsp;Percent&nbsp;Change&nbsp;In&nbsp;Large&nbsp;Fire&nbsp;Probability&nbsp;Raw,
+        Description: Avg&nbsp;Percent&nbsp;Change&nbsp;In&nbsp;Lg&nbsp;Fire&nbsp;Prob&nbsp;Raw,
         ColorMap: RdYlBu_r
     ]
 )
@@ -55,11 +56,11 @@ WUI_Interf = EEMSRead(
 
 LU_Cat_Fz = CvtToFuzzyCat(
     InFieldName = Mj_LU_Cat, 
-    RawValues = [0,1,2,3,4], 
-    FuzzyValues = [1,0,0.1,0,0], 
+    RawValues = [0,1,2,3,4,5], 
+    FuzzyValues = [1,0,0.1,0,0,0.1], 
     DefaultFuzzyValue = 0,
     Metadata = [
-        DisplayName: Fuzzy&nbsp;LandUse&nbsp;Category,
+        DisplayName: Fuzzy&nbsp;LandUse&nbsp;Risk,
         ColorMap: RdYlBu_r
     ]
 )
@@ -69,12 +70,10 @@ LU_Cat_Cvt = CvtFromFuzzy(
     TrueThreshold = 1, 
     FalseThreshold = -1,
     Metadata = [
-        DisplayName: Converted&nbsp;LandUse&nbsp;Category,
+        DisplayName: LandUse&nbsp;Risk,
         ColorMap: RdYlBu_r
     ]
 )
-
-
 
 # Normalizations
 
@@ -83,41 +82,22 @@ Nm_Lg_Fire = Normalize(
     StartVal = 0, 
     EndVal = 1,
     Metadata = [
-        DisplayName: Normalized&nbsp;Probability&nbsp;Of&nbsp;Large&nbsp;Fire,
+        DisplayName: Probability&nbsp;Of&nbsp;Large&nbsp;Fire,
         ColorMap: RdYlBu_r
     ]
 )
 
-Nm_Fire_Ig = Normalize(
-    InFieldName = Pr_Fire_Ig, 
+Nm_PcC_LgF = Normalize(
+    InFieldName = Pc_Cg_LgFi, 
     StartVal = 0, 
     EndVal = 1,
     Metadata = [
-        DisplayName: Normalized&nbsp;Probability&nbsp;Of&nbsp;Fire&nbsp;Ignition,
+        DisplayName: Percent&nbsp;Change&nbsp;In&nbsp;Large&nbsp;Fire&nbsp;Probability,
         ColorMap: RdYlBu_r
     ]
 )
 
 # Operations
-
-Hi_Fr_Rsk = WeightedSum(
-    InFieldNames = [Nm_Lg_Fire, Nm_Fire_Ig], 
-    Weights = [0.5, 0.5],
-    Metadata = [
-        DisplayName: High&nbsp;Fire&nbsp;Risk,
-        ColorMap: RdYlBu_r
-    ]
-)
-
-Nm_Fr_Rsk = Normalize(
-    InFieldName = Hi_Fr_Rsk, 
-    StartVal = 0, 
-    EndVal = 1,
-    Metadata = [
-        DisplayName: Normalized&nbsp;High&nbsp;Fire&nbsp;Risk,
-        ColorMap: RdYlBu_r
-    ]
-)
 
 WUI_Rsk = Maximum(
     InFieldNames = [WUI_Interm, WUI_Interf],
@@ -128,10 +108,10 @@ WUI_Rsk = Maximum(
 )
 
 Hi_Pri = WeightedSum(
-    InFieldNames = [Nm_Fr_Rsk, WUI_Rsk, LU_Cat_Cvt], 
-    Weights = [0.333, 0.333, 0.334],
+    InFieldNames = [Nm_Lg_Fire, Nm_PcC_LgF, LU_Cat_Cvt, WUI_Rsk], 
+    Weights = [0.3, 0.1, 0.3, 0.3],
     Metadata = [
-        DisplayName: High&nbsp;Priority&nbsp;Area,
+        DisplayName: High&nbsp;Priority&nbsp;Site&nbsp;Raw,
         ColorMap: RdYlBu_r
     ]
 )
@@ -141,8 +121,9 @@ Nm_Hi_Pri = Normalize(
     StartVal = 0, 
     EndVal = 1,
     Metadata = [
-        DisplayName: Normalized&nbsp;High&nbsp;Priority&nbsp;Area,
+        DisplayName: High&nbsp;Priority&nbsp;Site,
         ColorMap: RdYlBu_r
     ]
 )
 
+  
