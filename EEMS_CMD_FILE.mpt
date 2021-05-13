@@ -2,7 +2,7 @@
 
 # Read Commands
 Join_ID = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_8.csv,
     InFieldName = "Join_ID",
     DataType = "Integer",
     Metadata = [
@@ -13,7 +13,7 @@ Join_ID = EEMSRead(
 )
 
 Mj_LU_Cat = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_8.csv,
     InFieldName = "Mj_LU_Cat",
     DataType = "Integer",
     Metadata = [
@@ -24,7 +24,7 @@ Mj_LU_Cat = EEMSRead(
 )
 
 Pr_Lg_Fr = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_8.csv,
     InFieldName = "Pr_Lg_Fr",
     DataType = "Float",
     Metadata = [
@@ -34,8 +34,18 @@ Pr_Lg_Fr = EEMSRead(
     ]
 )
 
+Pr_Fi_Ign = EEMSRead(
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_8.csv,
+    InFieldName = "Pr_Fi_Ign",
+    DataType = "Float",
+    Metadata = [
+        DisplayName: Probability&nbsp;Of&nbsp;Fire&nbsp;Ignition&nbsp;Raw,
+        ColorMap: RdYlBu_r
+    ]
+)
+
 Pc_Cg_LgFi = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_8.csv,
     InFieldName = "Pc_Cg_LgFi",
     DataType = "Float",
     Metadata = [
@@ -45,8 +55,19 @@ Pc_Cg_LgFi = EEMSRead(
     ]
 )
 
+Fl_Fa = EEMSRead(
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_8.csv,
+    InFieldName = "Fl_Fa",
+    DataType = "Float",
+    Metadata = [
+        DisplayName: Flora&nbsp;And&nbsp;Fauna&nbsp;Raw,
+        Description: Flora&nbsp;And&nbsp;Fauna&nbsp;Raw,
+        ColorMap: RdYlBu_r
+    ]
+)
+
 WUI_Interm = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_8.csv,
     InFieldName = "WUI_Interm",
     DataType = "Integer",
     Metadata = [
@@ -56,7 +77,7 @@ WUI_Interm = EEMSRead(
 )
 
 WUI_Interf = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_5.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_8.csv,
     InFieldName = "WUI_Interf",
     DataType = "Integer",
     Metadata = [
@@ -67,8 +88,8 @@ WUI_Interf = EEMSRead(
 
 LU_Cat_Fz = CvtToFuzzyCat(
     InFieldName = Mj_LU_Cat, 
-    RawValues = [0,1,2,3,4,5], 
-    FuzzyValues = [1,0,0.1,0,0,0.1], 
+    RawValues = [0,1,2,3,4], 
+    FuzzyValues = [1,0,0.1,0,0], 
     DefaultFuzzyValue = 0,
     Metadata = [
         DisplayName: Fuzzy&nbsp;LandUse&nbsp;Risk,
@@ -88,12 +109,33 @@ LU_Cat_Cvt = CvtFromFuzzy(
 
 # Normalizations
 
+Nm_Fl_Fa = Normalize(
+    InFieldName = Fl_Fa, 
+    StartVal = 1, 
+    EndVal = 0,
+    Metadata = [
+        DisplayName: Low&nbsp;Ecological&nbsp;Importance,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+
 Nm_Lg_Fire = Normalize(
     InFieldName = Pr_Lg_Fr, 
     StartVal = 0, 
     EndVal = 1,
     Metadata = [
         DisplayName: Probability&nbsp;Of&nbsp;Large&nbsp;Fire,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+Nm_Pr_F_Ig = Normalize(
+    InFieldName = Pr_Fi_Ign, 
+    StartVal = 0, 
+    EndVal = 1,
+    Metadata = [
+        DisplayName: Probability&nbsp;Of&nbsp;Fire&nbsp;Ignition,
         ColorMap: RdYlBu_r
     ]
 )
@@ -110,6 +152,26 @@ Nm_PcC_LgF = Normalize(
 
 # Operations
 
+Fr_Rsk = WeightedSum(
+    InFieldNames = [Nm_Lg_Fire, Nm_Pr_F_Ig, Nm_PcC_LgF], 
+    Weights = [0.6, 0.2, 0.2],
+    Metadata = [
+        DisplayName: Fire&nbsp;Risk&nbsp;Raw,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+Nm_Fr_Rsk = Normalize(
+    InFieldName = Fr_Rsk, 
+    StartVal = 0, 
+    EndVal = 1,
+    Metadata = [
+        DisplayName: Fire&nbsp;Risk&nbsp;Index,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+
 WUI_Rsk = Maximum(
     InFieldNames = [WUI_Interm, WUI_Interf],
     Metadata = [
@@ -118,8 +180,9 @@ WUI_Rsk = Maximum(
     ]
 )
 
+
 Hi_Pri = WeightedSum(
-    InFieldNames = [Nm_Lg_Fire, Nm_PcC_LgF, LU_Cat_Cvt, WUI_Rsk], 
+    InFieldNames = [Nm_Fr_Rsk, Nm_Fl_Fa, LU_Cat_Cvt, WUI_Rsk], 
     Weights = [0.3, 0.1, 0.3, 0.3],
     Metadata = [
         DisplayName: High&nbsp;Priority&nbsp;Site&nbsp;Raw,
