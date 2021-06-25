@@ -1,0 +1,196 @@
+<metadata>
+	<eainfo>
+		<detailed>
+			<attr>
+				<attrdef>databasin.org/datasets/40f34ea090e446a5ac7c24473d8cf3a1/</attrdef>
+				<attalias>FID</attalias>
+				<attrlabl>FID</attrlabl>
+			</attr>
+			<attr>
+				<attrdef>databasin.org/datasets/40f34ea090e446a5ac7c24473d8cf3a1/</attrdef>
+				<attalias>Fl_Fa</attalias>
+				<attrlabl>Fl_Fa</attrlabl>
+			</attr>
+			<attr>
+				<attrdef>databasin.org/datasets/40f34ea090e446a5ac7c24473d8cf3a1/</attrdef>
+				<attalias>Fr_Rsk</attalias>
+				<attrlabl>Fr_Rsk</attrlabl>
+			</attr>
+			<attr>
+				<attrdef>databasin.org/datasets/40f34ea090e446a5ac7c24473d8cf3a1/</attrdef>
+				<attalias>Hi_Pri</attalias>
+				<attrlabl>Hi_Pri</attrlabl>
+			</attr>
+			<attr>
+				<attrdef>databasin.org/datasets/40f34ea090e446a5ac7c24473d8cf3a1/</attrdef>
+				<attalias>Join_ID</attalias>
+				<attrlabl>Join_ID</attrlabl>
+			</attr>
+			<attr>
+				<attrdef>databasin.org/datasets/40f34ea090e446a5ac7c24473d8cf3a1/</attrdef>
+				<attalias>LU_Cat_C_1</attalias>
+				<attrlabl>LU_Cat_C_1</attrlabl>
+			</attr>
+			<attr>
+				<attrdef>databasin.org/datasets/40f34ea090e446a5ac7c24473d8cf3a1/</attrdef>
+				<attalias>LU_Cat_Cvt</attalias>
+				<attrlabl>LU_Cat_Cvt</attrlabl>
+			</attr>
+			<attr>
+				<attrdef>databasin.org/datasets/40f34ea090e446a5ac7c24473d8cf3a1/</attrdef>
+				<attalias>LU_Cat_Fz</attalias>
+				<attrlabl>LU_Cat_Fz</attrlabl>
+			</attr>
+			<attr>
+				<attrdef>databasin.org/datasets/40f34ea090e446a5ac7c24473d8cf3a1/</attrdef>
+				<attalias>Mj_LU_Cat</attalias>
+				<attrlabl>Mj_LU_Cat</attrlabl>
+			</attr>
+			<attr>
+				<attrdef>databasin.org/datasets/40f34ea090e446a5ac7c24473d8cf3a1/</attrdef>
+				<attalias>Nm_Fl_Fa</attalias>
+				<attrlabl>Nm_Fl_Fa</attrlabl>
+			</attr>
+			<attr>
+				<attrdef>databasin.org/datasets/40f34ea090e446a5ac7c24473d8cf3a1/</attrdef>
+				<attalias>Nm_Fr_Rsk</attalias>
+				<attrlabl>Nm_Fr_Rsk</attrlabl>
+			</attr>
+			<attr>
+				<attrdef>databasin.org/datasets/40f34ea090e446a5ac7c24473d8cf3a1/</attrdef>
+				<attalias>Nm_Hi_Pri</attalias>
+				<attrlabl>Nm_Hi_Pri</attrlabl>
+			</attr>
+			<attr>
+				<attrdef>databasin.org/datasets/40f34ea090e446a5ac7c24473d8cf3a1/</attrdef>
+				<attalias>Nm_Lg_Fire</attalias>
+				<attrlabl>Nm_Lg_Fire</attrlabl>
+			</attr>
+			<attr>
+				<attrdef>databasin.org/datasets/40f34ea090e446a5ac7c24473d8cf3a1/</attrdef>
+				<attalias>Nm_PcC_LgF</attalias>
+				<attrlabl>Nm_PcC_LgF</attrlabl>
+			</attr>
+			<attr>
+				<attrdef>databasin.org/datasets/40f34ea090e446a5ac7c24473d8cf3a1/</attrdef>
+				<attalias>Nm_Pr_F_Ig</attalias>
+				<attrlabl>Nm_Pr_F_Ig</attrlabl>
+			</attr>
+			<attr>
+				<attrdef>databasin.org/datasets/40f34ea090e446a5ac7c24473d8cf3a1/</attrdef>
+				<attalias>Pc_Cg_LgFi</attalias>
+				<attrlabl>Pc_Cg_LgFi</attrlabl>
+			</attr>
+			<attr>
+				<attrdef>databasin.org/datasets/40f34ea090e446a5ac7c24473d8cf3a1/</attrdef>
+				<attalias>Pr_Fi_Ign</attalias>
+				<attrlabl>Pr_Fi_Ign</attrlabl>
+			</attr>
+			<attr>
+				<attrdef>databasin.org/datasets/40f34ea090e446a5ac7c24473d8cf3a1/</attrdef>
+				<attalias>Pr_Lg_Fr</attalias>
+				<attrlabl>Pr_Lg_Fr</attrlabl>
+			</attr>
+			<attr>
+				<attrdef>databasin.org/datasets/40f34ea090e446a5ac7c24473d8cf3a1/</attrdef>
+				<attalias>Shape</attalias>
+				<attrlabl>Shape</attrlabl>
+			</attr>
+			<attr>
+				<attrdef>databasin.org/datasets/40f34ea090e446a5ac7c24473d8cf3a1/</attrdef>
+				<attalias>WUI_Interf</attalias>
+				<attrlabl>WUI_Interf</attrlabl>
+			</attr>
+			<attr>
+				<attrdef>databasin.org/datasets/40f34ea090e446a5ac7c24473d8cf3a1/</attrdef>
+				<attalias>WUI_Interm</attalias>
+				<attrlabl>WUI_Interm</attrlabl>
+			</attr>
+			<attr>
+				<attrdef>databasin.org/datasets/40f34ea090e446a5ac7c24473d8cf3a1/</attrdef>
+				<attalias>WUI_Rsk</attalias>
+				<attrlabl>WUI_Rsk</attrlabl>
+			</attr>
+		</detailed>
+	</eainfo>
+	<distinfo>
+		<techpreq>Desktop GIS software.</techpreq>
+		<stdorder>
+			<digform>
+				<digtopt>
+					<onlinopt>
+						<computer>
+							<networka>
+								<networkr>https://databasin.org/datasets/40f34ea090e446a5ac7c24473d8cf3a1/</networkr>
+							</networka>
+						</computer>
+						<accinstr>Download from https://databasin.org</accinstr>
+					</onlinopt>
+				</digtopt>
+				<digtinfo>
+					<formvern>ArcGIS 10</formvern>
+					<formspec>Feature Layer</formspec>
+					<formname>Feature Layer</formname>
+					<filedec>No compression applied</filedec>
+				</digtinfo>
+			</digform>
+			<ordering>Download from https://databasin.org</ordering>
+			<fees>None</fees>
+		</stdorder>
+		<distliab>No warranty is made by Data Basin for use of this dataset.  No warranty is made by Data Basin regarding the accuracy, reliability, or completeness of this dataset. In no event shall Data Basin have any liability whatsoever for payment of any consequential, incidental, indirect, special, or tort damages of any kind, including, but not limited to, any loss of profits arising out of the use or reliance on the geographic or attribute data contained within this dataset or arising out of the delivery, installation, operation, or support by Data Basin.</distliab>
+		<distrib>
+			<cntinfo>
+				<cntemail>databasin_admin@consbio.org</cntemail>
+				<cntvoice>541-757-0687</cntvoice>
+				<cntaddr>
+					<country>USA</country>
+					<postal>97333</postal>
+					<state>OR</state>
+					<city>Corvallis</city>
+					<address>136 SW Washington Ave, Suite 202</address>
+					<addrtype>physical address</addrtype>
+				</cntaddr>
+				<cntperp>
+					<cntper>Data Basin Administrator</cntper>
+					<cntorg>Data Basin</cntorg>
+				</cntperp>
+			</cntinfo>
+		</distrib>
+	</distinfo>
+	<idinfo>
+		<keywords>
+			<theme>
+				<themekey>eems,rpp</themekey>
+			</theme>
+		</keywords>
+		<useconst>This work is licensed under a  Creative Commons Attribution 3.0 License .</useconst>
+		<spdom>
+			<bounding>
+				<southbc>4076431.573922184</southbc>
+				<northbc>4172931.8878272744</northbc>
+				<eastbc>-13295580.875442903</eastbc>
+				<westbc>-13427180.883701565</westbc>
+			</bounding>
+		</spdom>
+		<ptcontac>
+			<cntinfo>
+				<cntpos>GIS Analyst/Project Manager</cntpos>
+				<cntemail>zachary.canter@consbio.org</cntemail>
+				<cntperp>
+					<cntorg>CBI</cntorg>
+					<cntper>Zac Canter</cntper>
+				</cntperp>
+			</cntinfo>
+		</ptcontac>
+		<descript>
+			<abstract>v0p5a: High Priority Site for Wildfire Risk Reduction Treatments</abstract>
+		</descript>
+		<citation>
+			<citeinfo>
+				<origin>CBI</origin>
+				<onlink>https://databasin.org/datasets/40f34ea090e446a5ac7c24473d8cf3a1/</onlink>
+				<title>RPP EEMS 0p5a</title>
+			</citeinfo>
+		</citation>
+	</idinfo>
+</metadata>

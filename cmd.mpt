@@ -1,8 +1,6 @@
-
-
 # Read Commands
 Join_ID = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_9.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_8.csv,
     InFieldName = "Join_ID",
     DataType = "Integer",
     Metadata = [
@@ -13,7 +11,7 @@ Join_ID = EEMSRead(
 )
 
 Mj_LU_Cat = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_9.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_8.csv,
     InFieldName = "Mj_LU_Cat",
     DataType = "Integer",
     Metadata = [
@@ -24,7 +22,7 @@ Mj_LU_Cat = EEMSRead(
 )
 
 Pr_Lg_Fr = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_9.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_8.csv,
     InFieldName = "Pr_Lg_Fr",
     DataType = "Float",
     Metadata = [
@@ -35,7 +33,7 @@ Pr_Lg_Fr = EEMSRead(
 )
 
 Pr_Fi_Ign = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_9.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_8.csv,
     InFieldName = "Pr_Fi_Ign",
     DataType = "Float",
     Metadata = [
@@ -45,7 +43,7 @@ Pr_Fi_Ign = EEMSRead(
 )
 
 Pc_Cg_LgFi = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_9.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_8.csv,
     InFieldName = "Pc_Cg_LgFi",
     DataType = "Float",
     Metadata = [
@@ -56,7 +54,7 @@ Pc_Cg_LgFi = EEMSRead(
 )
 
 Fl_Fa = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_9.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_8.csv,
     InFieldName = "Fl_Fa",
     DataType = "Float",
     Metadata = [
@@ -66,18 +64,8 @@ Fl_Fa = EEMSRead(
     ]
 )
 
-Buil_Rat = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_9.csv,
-    InFieldName = "Buil_Rat",
-    DataType = "Float",
-    Metadata = [
-        DisplayName: Building&nbsp;Site&nbsp;Ratio,
-        ColorMap: RdYlBu_r
-    ]
-)
-
 WUI_Interm = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_9.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_8.csv,
     InFieldName = "WUI_Interm",
     DataType = "Integer",
     Metadata = [
@@ -87,7 +75,7 @@ WUI_Interm = EEMSRead(
 )
 
 WUI_Interf = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_9.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_8.csv,
     InFieldName = "WUI_Interf",
     DataType = "Integer",
     Metadata = [
@@ -102,7 +90,7 @@ LU_Cat_Fz = CvtToFuzzyCat(
     FuzzyValues = [1,0,0.1,0,0], 
     DefaultFuzzyValue = 0,
     Metadata = [
-        DisplayName: Not&nbsp;Land&nbsp;Type&nbsp;Buffer,
+        DisplayName: Fuzzy&nbsp;LandUse&nbsp;Risk,
         ColorMap: RdYlBu_r
     ]
 )
@@ -112,22 +100,12 @@ LU_Cat_Cvt = CvtFromFuzzy(
     TrueThreshold = 1, 
     FalseThreshold = -1,
     Metadata = [
-        DisplayName: Not&nbsp;Land&nbsp;Type&nbsp;Buffer,
+        DisplayName: LandUse&nbsp;Risk,
         ColorMap: RdYlBu_r
     ]
 )
 
 # Normalizations
-
-NmBuil_Rat = Normalize(
-    InFieldName = Buil_Rat, 
-    StartVal = 1, 
-    EndVal = 0,
-    Metadata = [
-        DisplayName: Undevelopment&nbsp;Index,
-        ColorMap: RdYlBu_r
-    ]
-)
 
 Nm_Fl_Fa = Normalize(
     InFieldName = Fl_Fa, 
@@ -219,31 +197,3 @@ Nm_Hi_Pri = Normalize(
         ColorMap: RdYlBu_r
     ]
 )
-
-op_sp_re = Multiply(
-    InFieldNames = [Nm_Hi_Pri, NmBuil_Rat],
-    Metadata = [
-        DisplayName: Openspace&nbsp;Wildfire&nbsp;Risk&nbsp;Reduction&nbsp;Priority&nbsp;Areas&nbsp;Raw,
-        ColorMap: RdYlBu_r
-    ]
-)
-
-os_hi_pri = Normalize(
-    InFieldName = op_sp_re, 
-    StartVal = 0, 
-    EndVal = 1,
-    Metadata = [
-        DisplayName: Openspace&nbsp;Wildfire&nbsp;Risk&nbsp;Reduction&nbsp;Priority&nbsp;Areas,
-        ColorMap: RdYlBu_r
-    ]
-)
-
-# Output
-
-Out = EEMSWrite(
-  OutFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/EEMS_Output.csv,
-  OutFieldNames = [Join_ID, Nm_Hi_Pri, Hi_Pri, Nm_Fr_Rsk, Fr_Rsk, Nm_Lg_Fire, Nm_Pr_F_Ig, Nm_PcC_LgF, LU_Cat_Cvt, Nm_Fl_Fa, 
-                   Fl_Fa, WUI_Rsk, WUI_Interm, WUI_Interf, Pr_Lg_Fr, Pr_Fi_Ign, Pc_Cg_LgFi, LU_Cat_Cvt, LU_Cat_Fz, Mj_LU_Cat, 
-                   Buil_Rat, NmBuil_Rat, op_sp_re, os_hi_pri]
-)
-    
