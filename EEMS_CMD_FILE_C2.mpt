@@ -1,8 +1,18 @@
 
-
+    
+Join_ID = EEMSRead(
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_12.csv,
+    InFieldName = Join_ID,
+    DataType = Integer,
+    Metadata = [
+        DisplayName: Join&nbsp;ID,
+        Description: Join&nbsp;ID,
+        ColorMap: RdYlBu_r
+    ]
+)
 
 Mj_LU_Cat = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_11.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_12.csv,
     InFieldName = Mj_LU_Cat,
     DataType = Integer,
     Metadata = [
@@ -12,18 +22,18 @@ Mj_LU_Cat = EEMSRead(
     ]
 )
 
-Vg_Pct = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_11.csv,
-    InFieldName = Vg_Pct,
-    DataType = Float,
+Mj_Haz_Cat = EEMSRead(
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_12.csv,
+    InFieldName = Mj_Haz_Cat,
+    DataType = Integer,
     Metadata = [
-        DisplayName: Vegetation&nbsp;Percentage,
+        DisplayName: Fire&nbsp;Hazard&nbsp;Severity&nbsp;Zone&nbsp;Raw,
         ColorMap: RdYlBu_r
     ]
 )
 
 Pr_Lg_Fr = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_11.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_12.csv,
     InFieldName = Pr_Lg_Fr,
     DataType = Float,
     Metadata = [
@@ -34,7 +44,7 @@ Pr_Lg_Fr = EEMSRead(
 )
 
 Pr_Fi_Ign = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_11.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_12.csv,
     InFieldName = Pr_Fi_Ign,
     DataType = Float,
     Metadata = [
@@ -44,7 +54,7 @@ Pr_Fi_Ign = EEMSRead(
 )
 
 Pc_Cg_LgFi = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_11.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_12.csv,
     InFieldName = Pc_Cg_LgFi,
     DataType = Float,
     Metadata = [
@@ -55,7 +65,7 @@ Pc_Cg_LgFi = EEMSRead(
 )
 
 Fl_Fa = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_11.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_12.csv,
     InFieldName = Fl_Fa,
     DataType = Float,
     Metadata = [
@@ -66,7 +76,7 @@ Fl_Fa = EEMSRead(
 )
 
 Buil_Rat = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_11.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_12.csv,
     InFieldName = Buil_Rat,
     DataType = Float,
     Metadata = [
@@ -75,18 +85,8 @@ Buil_Rat = EEMSRead(
     ]
 )
 
-Slp = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_11.csv,
-    InFieldName = Slp,
-    DataType = Integer,
-    Metadata = [
-        DisplayName: Slope&nbsp;Raw,
-        ColorMap: RdYlBu_r
-    ]
-)
-
 WUI_Interm = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_11.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_12.csv,
     InFieldName = WUI_Interm,
     DataType = Integer,
     Metadata = [
@@ -96,7 +96,7 @@ WUI_Interm = EEMSRead(
 )
 
 WUI_Interf = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_11.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_12.csv,
     InFieldName = WUI_Interf,
     DataType = Integer,
     Metadata = [
@@ -111,7 +111,18 @@ LU_Cat_Fz = CvtToFuzzyCat(
     FuzzyValues = [1,0,0.1,0,0], 
     DefaultFuzzyValue = 0,
     Metadata = [
-        DisplayName: Not&nbsp;Land&nbsp;Type&nbsp;Buffer,
+        DisplayName: Not&nbsp;Land&nbsp;Type&nbsp;Buffer&nbsp;Fuzzy,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+Hz_Cat_Fz = CvtToFuzzyCat(
+    InFieldName = Mj_Haz_Cat, 
+    RawValues = [3,2,1,0,-2,-1], 
+    FuzzyValues = [1,0.75,0.5,0,0,0], 
+    DefaultFuzzyValue = 0,
+    Metadata = [
+        DisplayName: Fire&nbsp;Hazard&nbsp;Severity&nbsp;Zone&nbsp;Fuzzy,
         ColorMap: RdYlBu_r
     ]
 )
@@ -126,27 +137,18 @@ LU_Cat_Cvt = CvtFromFuzzy(
     ]
 )
 
+Hz_Cat_Cvt = CvtFromFuzzy(
+    InFieldName = Hz_Cat_Fz, 
+    TrueThreshold = 1, 
+    FalseThreshold = -1,
+    Metadata = [
+        DisplayName: Fire&nbsp;Hazard&nbsp;Severity&nbsp;Zone,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+
 # Normalizations
-
-NmBuil_Rat = CvtToFuzzyMeanToMid(
-    InFieldName = Buil_Rat, 
-    IgnoreZeros = False, 
-    FuzzyValues = [1, 0.75, 0.5, 0.25, 0],
-    Metadata = [
-        DisplayName: Undevelopment&nbsp;Index&nbsp;Fuzzy,
-        ColorMap: RdYlBu_r
-    ]
-)
-
-Nm_Slp = CvtToFuzzyMeanToMid(
-    InFieldName = Slp, 
-    IgnoreZeros = False, 
-    FuzzyValues = [0, 0.25, 0.5, 0.75, 1],
-    Metadata = [
-        DisplayName: Steeper&nbsp;Slope&nbsp;Index&nbsp;Fuzzy,
-        ColorMap: RdYlBu_r
-    ]
-)
 
 Nm_Fl_Fa = Normalize(
     InFieldName = Fl_Fa, 
@@ -189,11 +191,51 @@ Nm_PcC_LgF = Normalize(
     ]
 )
 
+NmBuil_Rat = CvtToFuzzyMeanToMid(
+    InFieldName = Buil_Rat, 
+    IgnoreZeros = False, 
+    FuzzyValues = [1, 0.75, 0.5, 0.25, 0],
+    Metadata = [
+        DisplayName: Undevelopment&nbsp;Index&nbsp;Fuzzy,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+NFzBul_Rat = CvtFromFuzzy(
+    InFieldName = NmBuil_Rat, 
+    TrueThreshold = 1, 
+    FalseThreshold = -1,
+    Metadata = [
+        DisplayName: Undevelopment&nbsp;Index,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+
 # Operations
 
-Fr_Rsk = WeightedSum(
+C_Fr_Rsk = WeightedSum(
     InFieldNames = [Nm_Lg_Fire, Nm_Pr_F_Ig, Nm_PcC_LgF], 
-    Weights = [0.4, 0.4, 0.2],
+    Weights = [0.6, 0.2, 0.2],
+    Metadata = [
+        DisplayName: CBI&nbsp;Fire&nbsp;Risk&nbsp;Raw,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+CNm_Fr_Rsk = Normalize(
+    InFieldName = C_Fr_Rsk, 
+    StartVal = 0, 
+    EndVal = 1,
+    Metadata = [
+        DisplayName: CBI&nbsp;Fire&nbsp;Risk&nbsp;Index,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+Fr_Rsk = WeightedSum(
+    InFieldNames = [CNm_Fr_Rsk, Hz_Cat_Cvt], 
+    Weights = [0.75, 0.25],
     Metadata = [
         DisplayName: Fire&nbsp;Risk&nbsp;Raw,
         ColorMap: RdYlBu_r
@@ -222,7 +264,7 @@ WUI_Rsk = Maximum(
 
 Hi_Pri = WeightedSum(
     InFieldNames = [Nm_Fr_Rsk, Nm_Fl_Fa, LU_Cat_Cvt, WUI_Rsk], 
-    Weights = [0.3, 0.1, 0.3, 0.3],
+    Weights = [0.3, 0.2, 0.25, 0.25],
     Metadata = [
         DisplayName: High&nbsp;Priority&nbsp;Site&nbsp;Raw,
         ColorMap: RdYlBu_r
@@ -239,20 +281,57 @@ Nm_Hi_Pri = Normalize(
     ]
 )
 
-NFzBul_Rat = CvtFromFuzzy(
-    InFieldName = NmBuil_Rat, 
-    TrueThreshold = 1, 
-    FalseThreshold = -1,
-    Metadata = [
-        DisplayName: Undevelopment&nbsp;Index&nbsp;Fuzzy,
-        ColorMap: RdYlBu_r
-    ]
-)
+#########
 
 op_sp_re = Multiply(
     InFieldNames = [Nm_Hi_Pri, NFzBul_Rat],
     Metadata = [
         DisplayName: Openspace&nbsp;Wildfire&nbsp;Risk&nbsp;Reduction&nbsp;Priority&nbsp;Areas&nbsp;Raw,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+os_hi_pri = Normalize(
+    InFieldName = op_sp_re, 
+    StartVal = 0, 
+    EndVal = 1,
+    Metadata = [
+        DisplayName: Openspace&nbsp;Wildfire&nbsp;Risk&nbsp;Reduction&nbsp;Priority&nbsp;Areas,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+######################
+
+
+Vg_Pct = EEMSRead(
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_12.csv,
+    InFieldName = Vg_Pct,
+    DataType = Float,
+    Metadata = [
+        DisplayName: Vegetation&nbsp;Percentage,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+
+Slp = EEMSRead(
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_12.csv,
+    InFieldName = Slp,
+    DataType = Integer,
+    Metadata = [
+        DisplayName: Slope&nbsp;Raw,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+
+Nm_Slp = CvtToFuzzyCurve(
+    InFieldName = Slp, 
+    RawValues = [0, 4, 8, 12, 16], 
+    FuzzyValues = [0, 1, 1, 0.5, 0],
+    Metadata = [
+        DisplayName: Steeper&nbsp;Slope&nbsp;Index&nbsp;Fuzzy,
         ColorMap: RdYlBu_r
     ]
 )
@@ -271,7 +350,7 @@ NFz_Slp = CvtFromFuzzy(
 gt_idx_rw = Multiply(
     InFieldNames = [Vg_Pct, NFz_Slp],
     Metadata = [
-        DisplayName: Goat&nbsp;Index&nbsp;Raw,
+        DisplayName: Herbivory&nbsp;Index&nbsp;Raw,
         ColorMap: RdYlBu_r
     ]
 )
@@ -281,18 +360,7 @@ gt_idx = Normalize(
     StartVal = 0, 
     EndVal = 1,
     Metadata = [
-        DisplayName: Goat&nbsp;Index,
-        ColorMap: RdYlBu_r
-    ]
-)
-
-
-os_hi_pri = Normalize(
-    InFieldName = op_sp_re, 
-    StartVal = 0, 
-    EndVal = 1,
-    Metadata = [
-        DisplayName: Openspace&nbsp;Wildfire&nbsp;Risk&nbsp;Reduction&nbsp;Priority&nbsp;Areas,
+        DisplayName: Herbivory&nbsp;Index,
         ColorMap: RdYlBu_r
     ]
 )
@@ -300,7 +368,7 @@ os_hi_pri = Normalize(
 gt_wfra = Multiply(
     InFieldNames = [os_hi_pri, gt_idx],
     Metadata = [
-        DisplayName: Goat&nbsp;Wildfire&nbsp;Risk&nbsp;Reduction&nbsp;Priority&nbsp;Areas&nbsp;Raw,
+        DisplayName: Herbivory&nbsp;Wildfire&nbsp;Risk&nbsp;Reduction&nbsp;Priority&nbsp;Areas&nbsp;Raw,
         ColorMap: RdYlBu_r
     ]
 )
@@ -310,8 +378,18 @@ nmgt_wfra = Normalize(
     StartVal = 0, 
     EndVal = 1,
     Metadata = [
-        DisplayName: Goat&nbsp;Wildfire&nbsp;Risk&nbsp;Reduction&nbsp;Priority&nbsp;Areas,
+        DisplayName: Herbivory&nbsp;Wildfire&nbsp;Risk&nbsp;Reduction&nbsp;Priority&nbsp;Areas,
         ColorMap: RdYlBu_r
     ]
 )
 
+# Output
+
+Out = EEMSWrite(
+  OutFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/EEMS_Output_C.csv,
+  OutFieldNames = [nmgt_wfra, gt_wfra, gt_idx, gt_idx_rw, NFz_Slp, Nm_Slp, Slp, Vg_Pct, 
+                   Join_ID, Nm_Hi_Pri, Hi_Pri, Nm_Fr_Rsk, Fr_Rsk, Nm_Lg_Fire, Nm_Pr_F_Ig, Nm_PcC_LgF, LU_Cat_Cvt, Nm_Fl_Fa, 
+                   Fl_Fa, WUI_Rsk, WUI_Interm, WUI_Interf, Pr_Lg_Fr, Pr_Fi_Ign, Pc_Cg_LgFi, LU_Cat_Cvt, LU_Cat_Fz, Mj_LU_Cat, 
+                   Buil_Rat, NmBuil_Rat, op_sp_re, os_hi_pri, NFzBul_Rat, Mj_Haz_Cat, Hz_Cat_Fz, Hz_Cat_Cvt, C_Fr_Rsk, CNm_Fr_Rsk]
+)
+    

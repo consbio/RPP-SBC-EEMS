@@ -2,7 +2,7 @@
 
 # Read Commands
 Join_ID = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_11.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_12.csv,
     InFieldName = "Join_ID",
     DataType = "Integer",
     Metadata = [
@@ -13,7 +13,7 @@ Join_ID = EEMSRead(
 )
 
 Mj_LU_Cat = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_11.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_12.csv,
     InFieldName = "Mj_LU_Cat",
     DataType = "Integer",
     Metadata = [
@@ -23,19 +23,29 @@ Mj_LU_Cat = EEMSRead(
     ]
 )
 
+Mj_Haz_Cat = EEMSRead(
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_12.csv,
+    InFieldName = "Mj_Haz_Cat",
+    DataType = "Integer",
+    Metadata = [
+        DisplayName: Fire&nbsp;Hazard&nbsp;Severity&nbsp;Zone&nbsp;Raw,
+        ColorMap: RdYlBu_r
+    ]
+)
+
 Pr_Lg_Fr = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_11.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_12.csv,
     InFieldName = "Pr_Lg_Fr",
     DataType = "Float",
     Metadata = [
         DisplayName: Probability&nbsp;Of&nbsp;Large&nbsp;Fire&nbsp;Raw,
-        Description: databasin.org/datasets/40f34ea090e446a5ac7c24473d8cf3a1/,
+        Description: Relative&nbsp;Probability&nbsp;Of&nbsp;Large&nbsp;Fire&nbsp;Raw,
         ColorMap: RdYlBu_r
     ]
 )
 
 Pr_Fi_Ign = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_11.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_12.csv,
     InFieldName = "Pr_Fi_Ign",
     DataType = "Float",
     Metadata = [
@@ -45,7 +55,7 @@ Pr_Fi_Ign = EEMSRead(
 )
 
 Pc_Cg_LgFi = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_11.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_12.csv,
     InFieldName = "Pc_Cg_LgFi",
     DataType = "Float",
     Metadata = [
@@ -56,7 +66,7 @@ Pc_Cg_LgFi = EEMSRead(
 )
 
 Fl_Fa = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_11.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_12.csv,
     InFieldName = "Fl_Fa",
     DataType = "Float",
     Metadata = [
@@ -67,7 +77,7 @@ Fl_Fa = EEMSRead(
 )
 
 WUI_Interm = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_11.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_12.csv,
     InFieldName = "WUI_Interm",
     DataType = "Integer",
     Metadata = [
@@ -77,7 +87,7 @@ WUI_Interm = EEMSRead(
 )
 
 WUI_Interf = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_11.csv,
+    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_12.csv,
     InFieldName = "WUI_Interf",
     DataType = "Integer",
     Metadata = [
@@ -92,7 +102,18 @@ LU_Cat_Fz = CvtToFuzzyCat(
     FuzzyValues = [1,0,0.1,0,0], 
     DefaultFuzzyValue = 0,
     Metadata = [
-        DisplayName: Not&nbsp;Land&nbsp;Type&nbsp;Buffer,
+        DisplayName: Not&nbsp;Land&nbsp;Type&nbsp;Buffer&nbsp;Fuzzy,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+Hz_Cat_Fz = CvtToFuzzyCat(
+    InFieldName = Mj_Haz_Cat, 
+    RawValues = [3,2,1,0,-2,-1], 
+    FuzzyValues = [1,0.75,0.5,0,0,0], 
+    DefaultFuzzyValue = 0,
+    Metadata = [
+        DisplayName: Fire&nbsp;Hazard&nbsp;Severity&nbsp;Zone&nbsp;Fuzzy,
         ColorMap: RdYlBu_r
     ]
 )
@@ -106,6 +127,17 @@ LU_Cat_Cvt = CvtFromFuzzy(
         ColorMap: RdYlBu_r
     ]
 )
+
+Hz_Cat_Cvt = CvtFromFuzzy(
+    InFieldName = Hz_Cat_Fz, 
+    TrueThreshold = 1, 
+    FalseThreshold = -1,
+    Metadata = [
+        DisplayName: Fire&nbsp;Hazard&nbsp;Severity&nbsp;Zone,
+        ColorMap: RdYlBu_r
+    ]
+)
+
 
 # Normalizations
 
@@ -152,9 +184,28 @@ Nm_PcC_LgF = Normalize(
 
 # Operations
 
-Fr_Rsk = WeightedSum(
+C_Fr_Rsk = WeightedSum(
     InFieldNames = [Nm_Lg_Fire, Nm_Pr_F_Ig, Nm_PcC_LgF], 
     Weights = [0.6, 0.2, 0.2],
+    Metadata = [
+        DisplayName: CBI&nbsp;Fire&nbsp;Risk&nbsp;Raw,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+CNm_Fr_Rsk = Normalize(
+    InFieldName = C_Fr_Rsk, 
+    StartVal = 0, 
+    EndVal = 1,
+    Metadata = [
+        DisplayName: CBI&nbsp;Fire&nbsp;Risk&nbsp;Index,
+        ColorMap: RdYlBu_r
+    ]
+)
+
+Fr_Rsk = WeightedSum(
+    InFieldNames = [CNm_Fr_Rsk, Hz_Cat_Cvt], 
+    Weights = [0.75, 0.25],
     Metadata = [
         DisplayName: Fire&nbsp;Risk&nbsp;Raw,
         ColorMap: RdYlBu_r
@@ -183,10 +234,9 @@ WUI_Rsk = Maximum(
 
 Hi_Pri = WeightedSum(
     InFieldNames = [Nm_Fr_Rsk, Nm_Fl_Fa, LU_Cat_Cvt, WUI_Rsk], 
-    Weights = [0.3, 0.1, 0.3, 0.3],
+    Weights = [0.3, 0.2, 0.25, 0.25],
     Metadata = [
         DisplayName: High&nbsp;Priority&nbsp;Site&nbsp;Raw,
-        Description: databasin.org/datasets/40f34ea090e446a5ac7c24473d8cf3a1/,
         ColorMap: RdYlBu_r
     ]
 )
@@ -200,3 +250,5 @@ Nm_Hi_Pri = Normalize(
         ColorMap: RdYlBu_r
     ]
 )
+
+ 
