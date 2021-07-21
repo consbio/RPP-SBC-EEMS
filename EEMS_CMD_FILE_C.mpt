@@ -382,4 +382,3 @@ nmgt_wfra = Normalize(
         ColorMap: RdYlBu_r
     ]
 )
-
