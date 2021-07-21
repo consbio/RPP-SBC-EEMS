@@ -1,17 +1,5 @@
 
 
-# Read Commands
-Join_ID = EEMSRead(
-    InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_12.csv,
-    InFieldName = Join_ID,
-    DataType = Integer,
-    Metadata = [
-        DisplayName: Join&nbsp;ID,
-        Description: Join&nbsp;ID,
-        ColorMap: RdYlBu_r
-    ]
-)
-
 Mj_LU_Cat = EEMSRead(
     InFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/A_RU_12.csv,
     InFieldName = Mj_LU_Cat,
@@ -250,13 +238,3 @@ Nm_Hi_Pri = Normalize(
         ColorMap: RdYlBu_r
     ]
 )
-
-# Output
-
-Out = EEMSWrite(
-  OutFileName = C:\Users\zrcan\Documents\GitHub\RPP-SBC-EEMS\out_data/eems/EEMS_Output_v7A.csv,
-  OutFieldNames = [Join_ID, Nm_Hi_Pri, Hi_Pri, Nm_Fr_Rsk, Fr_Rsk, Nm_Lg_Fire, Nm_Pr_F_Ig, Nm_PcC_LgF, LU_Cat_Cvt, Nm_Fl_Fa, 
-                   Fl_Fa, WUI_Rsk, WUI_Interm, WUI_Interf, Pr_Lg_Fr, Pr_Fi_Ign, Pc_Cg_LgFi, LU_Cat_Cvt, LU_Cat_Fz, Mj_LU_Cat,
-                   Mj_Haz_Cat, Hz_Cat_Fz, Hz_Cat_Cvt, C_Fr_Rsk, CNm_Fr_Rsk]
-)
-    
